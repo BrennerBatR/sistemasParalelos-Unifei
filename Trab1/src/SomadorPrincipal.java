@@ -32,7 +32,7 @@ public class SomadorPrincipal {
         System.out.println("Iniciando a SOMA ...");
         int soma = 0;
         for (int i = 0; i < 100; i++) {
-            System.out.println("Pegando a soma " + i * 100 + " a " + (i + 1) * 100);
+            //System.out.println("Pegando a soma " + i * 100 + " a " + (i + 1) * 100);
             Future<Integer> result = futures.get(i);
             soma += result.get();
         }
