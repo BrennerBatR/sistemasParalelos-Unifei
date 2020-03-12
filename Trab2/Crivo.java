@@ -36,31 +36,40 @@ public class Crivo extends Thread {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        Crivo t1, t2;
         Scanner teclado = new Scanner(System.in);
-
-        int qtd, parcial;
-        System.out.println("Digite a quantidade de números:");
-        qtd = teclado.nextInt();
-
+        int qtd = 1, numThreads = 1;
+        while (qtd % numThreads != 0 && qtd == 0) {
+            System.out.println("Digite a quantidade de números:");
+            qtd = teclado.nextInt();
+            System.out.println("Digite a quantidade de Threads: (Deve ser multiplo da qtd-2)");
+            numThreads = teclado.nextInt();
+        }
+        // Startando
         boolean[] primos = new boolean[qtd + 1];
         for (int i = 2; i <= qtd; i++)
             primos[i] = true;
 
-        parcial = (qtd + 2) / 2;
+        int inicioaux = 2;
+        int fimstart = (qtd / numThreads) + 1;
+        int fimaux = fimstart;
+        Crivo[] threads = new Crivo[qtd];
 
-        t1 = new Crivo(1, 2, parcial, primos);
-        t2 = new Crivo(2, parcial + 1, qtd, primos);
+        for (int i = 0; i < numThreads; i++) {
+            threads[i] = new Crivo(i, inicioaux, fimaux, primos);
+            inicioaux = fimaux + 1;
+            fimaux += fimstart - 1;
+        }
 
-        t1.start();
-        t2.start();
+        for (int i = 0; i < numThreads; i++)
+            threads[i].start();
 
-        t1.join(); // join serve para a thread principal ficar bloqueada ate a thread 1 retornar
-        t2.join();
+        for (int i = 0; i < numThreads; i++)
+            threads[i].join();
 
         System.out.println("\n Resultado final: ");
-        t1.exibeVetor();
-        t2.exibeVetor();
+
+        for (int i = 0; i < numThreads; i++)
+            threads[i].exibeVetor();
 
     }
 }
