@@ -1,4 +1,7 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
 public class Crivo extends Thread {
     private int id, inicio, fim;
@@ -41,11 +44,11 @@ public class Crivo extends Thread {
         System.out.println("Digite a quantidade de números:");
         qtd = teclado.nextInt();
         System.out.println("Digite a quantidade de Threads: (Deve ser multiplo da qtd)");
-
         numThreads = teclado.nextInt();
+        long tempoInicio = System.currentTimeMillis();
         // Startando
         boolean[] primos = new boolean[qtd + 2];
-        for (int i = 2; i <= qtd +1; i++)
+        for (int i = 2; i <= qtd + 1; i++)
             primos[i] = true;
 
         int inicioaux = 2;
@@ -69,6 +72,10 @@ public class Crivo extends Thread {
 
         for (int i = 0; i < numThreads; i++)
             threads[i].exibeVetor();
+
+        long tempoFim = System.currentTimeMillis();
+        System.out.println("\n Tempo gasto: " + new SimpleDateFormat("mm:ss.SSS").format(new Date(tempoFim - tempoInicio)));
+
 
     }
 }
