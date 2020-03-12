@@ -12,7 +12,7 @@ public class Crivo extends Thread {
     }
 
     public void run() {
-        System.out.println("Thread " + id + " acionada!");
+        System.out.println("Thread " + id + " acionada! Inicio= " + inicio + " fim = " + fim);
         crivoEratostenes();
     }
 
@@ -37,16 +37,15 @@ public class Crivo extends Thread {
 
     public static void main(String[] args) throws InterruptedException {
         Scanner teclado = new Scanner(System.in);
-        int qtd = 1, numThreads = 1;
-        while (qtd % numThreads != 0 && qtd == 0) {
-            System.out.println("Digite a quantidade de números:");
-            qtd = teclado.nextInt();
-            System.out.println("Digite a quantidade de Threads: (Deve ser multiplo da qtd-2)");
-            numThreads = teclado.nextInt();
-        }
+        int qtd, numThreads;
+        System.out.println("Digite a quantidade de números:");
+        qtd = teclado.nextInt();
+        System.out.println("Digite a quantidade de Threads: (Deve ser multiplo da qtd)");
+
+        numThreads = teclado.nextInt();
         // Startando
-        boolean[] primos = new boolean[qtd + 1];
-        for (int i = 2; i <= qtd; i++)
+        boolean[] primos = new boolean[qtd + 2];
+        for (int i = 2; i <= qtd +1; i++)
             primos[i] = true;
 
         int inicioaux = 2;
