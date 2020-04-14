@@ -1,1 +1,0 @@
-Desenvolver o problema do Crivo de Eratóstenes com processamento paralelo
