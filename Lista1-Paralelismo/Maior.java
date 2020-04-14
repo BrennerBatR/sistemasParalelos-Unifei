@@ -4,6 +4,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.Random;
 
+//Esse algoritimo usa Paralelismo de dados, nele eu divido o vetor pelo numero de threads e busco o maior local. Apos obter esse maior local eu verifico o maior global
 public class Maior extends Thread {
     private int id, inicio, fim, maior;
     private int[] vetor;
@@ -15,7 +16,6 @@ public class Maior extends Thread {
         this.vetor = vetor;
     }
 
-
     public void exibeVetor() {
         for (int i = inicio; i <= fim; i++)
             System.out.printf("%d ", i);
@@ -23,13 +23,14 @@ public class Maior extends Thread {
     }
 
     public void calculaMaior() {
-      //  System.out.println("\n Calculando o maior do vetor " + id + ": Inicio = " + inicio + "fim = " + fim);
+        // System.out.println("\n Calculando o maior do vetor " + id + ": Inicio = " +
+        // inicio + "fim = " + fim);
         maior = vetor[inicio];
         for (int i = 1; i < fim; i++)
             if (maior < vetor[i])
                 maior = vetor[i];
 
-       // System.out.println("Maior " + id + "= " + maior);
+        // System.out.println("Maior " + id + "= " + maior);
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -42,15 +43,15 @@ public class Maior extends Thread {
         numThreads = teclado.nextInt();
         long tempoInicio = System.currentTimeMillis();
         // Startando
-       // System.out.println("Iniciando a geração do ARRAY de tamanho: " + qtd);
+        // System.out.println("Iniciando a geração do ARRAY de tamanho: " + qtd);
         int[] numeros = new int[qtd];
         Random r = new Random(System.currentTimeMillis());
         for (int i = 0; i < qtd; i++) {
-            numeros[i] = Math.abs(r.nextInt()) % 10000 ; // abs pega o valor absoluto
-            //System.out.printf("%d ", numeros[i]);
+            numeros[i] = Math.abs(r.nextInt()) % 10000; // abs pega o valor absoluto
+            // System.out.printf("%d ", numeros[i]);
         }
 
-        //System.out.printf("\n");
+        // System.out.printf("\n");
         int[] vetor = numeros;
 
         int inicioaux = 0;
@@ -70,7 +71,7 @@ public class Maior extends Thread {
         for (int i = 0; i < numThreads; i++)
             threads[i].join();
 
-        //System.out.println("\n Resultado parcial: ");
+        // System.out.println("\n Resultado parcial: ");
 
         int resultado = 0;
         for (int i = 0; i < numThreads; i++) {

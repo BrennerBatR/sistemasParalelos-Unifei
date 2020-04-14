@@ -1,0 +1,10 @@
+1) O paralelismo de dados é uma técnica de programação que divide uma
+grande quantidade de dados em partes menores que podem ser operadas em
+paralelo. Após os dados serem processados, eles são combinados novamente
+em um único conjunto. 
+
+2)
+
+
+3)  T = [K + (M-1)] * t ; Se M>> K (caso comum), então T= M*t
+
