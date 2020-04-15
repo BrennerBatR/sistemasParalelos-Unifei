@@ -2,8 +2,14 @@
 grande quantidade de dados em partes menores que podem ser operadas em
 paralelo. Após os dados serem processados, eles são combinados novamente
 em um único conjunto. 
+O paralelismo funcional divite as tarefas diferentes em diferentes threads,
+por exemplo um sistema de calcular soma, multiplicação e subtração cada operação 
+estaria em uma thread diferente.
 
-2)
+
+2) Pois o paralelismo de dados separa a grande quantidade de dados em pequenas partes,
+sendo assim esses dados podem crescer de forma significativa que o paralelismo ira separá-lo
+em diferentes processos e tratá-los para obter um resultado final.
 
 
 3)  T = [K + (M-1)] * t ; Se M>> K (caso comum), então T= M*t
